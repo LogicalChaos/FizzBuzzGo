@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 // Standard
@@ -72,4 +73,22 @@ func fbg03() string {
 		result += "\n"
 	}
 	return result
+}
+
+// Use arrays
+func fbg04() string {
+	var array [100]string
+	for x := range array {
+		array[x] = strconv.Itoa(x + 1)
+	}
+	for x := 3; x <= 100; x += 3 {
+		array[x-1] = "Fizz"
+	}
+	for x := 5; x <= 100; x += 5 {
+		array[x-1] = "Buzz"
+	}
+	for x := 15; x <= 100; x += 15 {
+		array[x-1] = "FizzBuzz"
+	}
+	return strings.Join(array[:], "\n") + "\n"
 }
