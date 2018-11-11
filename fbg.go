@@ -92,3 +92,33 @@ func fbg04() string {
 	}
 	return strings.Join(array[:], "\n") + "\n"
 }
+
+func isFizzBuzz(value int) string {
+	isFizz := value%3 == 0
+	isBuzz := value%5 == 0
+	if isFizz && isBuzz {
+		return "FizzBuzz"
+	} else if isFizz {
+		return "Fizz"
+	} else if isBuzz {
+		return "Buzz"
+	} else {
+		return strconv.Itoa(value)
+	}
+}
+
+// Channels and helpers
+func fbg05() string {
+	var result = ""
+
+	fizzBuzzStrings := make(chan string)
+	go func() {
+		for x := 1; x <= 100; x++ {
+			fizzBuzzStrings <- isFizzBuzz(x)
+		}
+	}()
+	for x := 1; x <= 100; x++ {
+		result += <-fizzBuzzStrings + "\n"
+	}
+	return result
+}

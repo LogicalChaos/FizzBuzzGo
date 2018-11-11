@@ -12,6 +12,7 @@ func main() {
 	fizzBuzz2 := fbg02()
 	printFizzy(3, fbg03, fizzBuzz2)
 	printFizzy(4, fbg04, fizzBuzz2)
+	printFizzy(5, fbg05, fizzBuzz2)
 }
 
 func printFizzy(number int, fizzBuzz func() string, fizzBuzzWanted string) {
