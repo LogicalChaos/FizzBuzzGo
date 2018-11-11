@@ -122,3 +122,21 @@ func fbg05() string {
 	}
 	return result
 }
+
+// Range over channels
+func fbg06() string {
+	var result = ""
+
+	fizzBuzzStrings := make(chan string, 10)
+	go func() {
+		for x := 1; x <= 100; x++ {
+			fizzBuzzStrings <- isFizzBuzz(x)
+		}
+		close(fizzBuzzStrings)
+	}()
+
+	for fbs := range fizzBuzzStrings {
+		result += fbs + "\n"
+	}
+	return result
+}
